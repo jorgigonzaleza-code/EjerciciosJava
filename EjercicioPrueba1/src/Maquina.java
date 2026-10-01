@@ -6,9 +6,9 @@ public abstract class Maquina {
     }
 
     public Maquina(String codigoMaquina, int horasUso, int potencia) {
-        this.codigoMaquina = codigoMaquina;
-        this.horasUso = horasUso;
-        this.potencia = potencia;
+        this.setCodigoMaquina(codigoMaquina);
+        this.setHorasUso(horasUso);
+        this.setPotencia(potencia);
     }
 
     public String getCodigoMaquina() {
@@ -16,6 +16,9 @@ public abstract class Maquina {
     }
 
     public void setCodigoMaquina(String codigoMaquina) {
+        if (codigoMaquina == null || codigoMaquina.trim().isEmpty()){
+            throw new IllegalArgumentException("El codigo no puede ser nulo ni vacio");
+        }
         this.codigoMaquina = codigoMaquina;
     }
 
@@ -24,6 +27,9 @@ public abstract class Maquina {
     }
 
     public void setHorasUso(int horasUso) {
+        if (horasUso < 0 || horasUso > 20000) {
+            throw new IllegalArgumentException("Las horas deben encontrarse en el rango entre 0 y 20000");
+        }
         this.horasUso = horasUso;
     }
 
@@ -32,6 +38,9 @@ public abstract class Maquina {
     }
 
     public void setPotencia(int potencia) {
+        if (potencia <= 0) {
+            throw new IllegalArgumentException("La potencia debe ser mayor que cero");
+        }
         this.potencia = potencia;
     }
 
@@ -42,5 +51,7 @@ public abstract class Maquina {
                 ", codigoMaquina='" + codigoMaquina + '\'' +
                 '}';
     }
+
+    public abstract double calcularCosto();
 
 }

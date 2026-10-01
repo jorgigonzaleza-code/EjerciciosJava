@@ -16,4 +16,13 @@ public class CargadorFrontal extends Maquina{
     public void setCapacidadBalde(double capacidadBalde) {
         this.capacidadBalde = capacidadBalde;
     }
+
+    @Override
+    public double calcularCosto() {
+        double costo = 120000;
+        if (capacidadBalde > 3){
+            costo = costo * 1.2;
+        }
+        return costo;
+    }
 }

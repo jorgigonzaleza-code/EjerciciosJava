@@ -1,15 +1,17 @@
-public class Excavadora extends Maquina {
+public class Excavadora extends Maquina implements Certificable {
     private double peso;
     private boolean mantencionAlDia,certificacionSeguridad;
 
     public Excavadora() {
     }
 
-    public Excavadora(String codigoMaquina, int horasUso, int potencia, double peso, boolean mantencionAlDia, boolean certificacionSeguridad) {
+
+
+    public Excavadora(String codigoMaquina, int horasUso, int potencia, double peso, boolean mantencionAlDia) {
         super(codigoMaquina, horasUso, potencia);
-        this.peso = peso;
-        this.mantencionAlDia = mantencionAlDia;
-        this.certificacionSeguridad = certificacionSeguridad;
+        this.setPeso(peso);
+        this.setMantencionAlDia(mantencionAlDia);
+        this.setCertificacionSeguridad(false);
     }
 
     public double getPeso() {
@@ -34,5 +36,25 @@ public class Excavadora extends Maquina {
 
     public void setCertificacionSeguridad(boolean certificacionSeguridad) {
         this.certificacionSeguridad = certificacionSeguridad;
+    }
+
+    @Override
+    public double calcularCosto() {
+        double costo = 150000;
+        if (!mantencionAlDia){
+             costo = costo * 1.25;
+        }
+        return costo;
+
+    }
+
+    @Override
+    public boolean estaCertificada() {
+        return certificacionSeguridad;
+    }
+
+    @Override
+    public void certificar() {
+        certificacionSeguridad = true;
     }
 }
