@@ -6,7 +6,7 @@ public class CargadorFrontal extends Maquina{
 
     public CargadorFrontal(String codigoMaquina, int horasUso, int potencia, double capacidadBalde) {
         super(codigoMaquina, horasUso, potencia);
-        this.capacidadBalde = capacidadBalde;
+        this.setCapacidadBalde(capacidadBalde);
     }
 
     public double getCapacidadBalde() {
